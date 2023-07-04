@@ -21,9 +21,10 @@ fn get_path[T]() ?string{
 		}
     }
 	assert paths.len <= 1
-
-	return paths.first()
-
+	if paths.len> 0{
+		return paths.first()
+	}
+	return none
 }
 
 pub fn (mut self WebModule) register_controller[T]() {
