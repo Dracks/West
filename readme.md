@@ -58,3 +58,17 @@ fn main() {
 	web_app.run(8020)
 }
 ```
+## Throuble shutting
+* undefined reference to `I_src__config__Config_to_Interface_dracks__vest__Object' or similar
+This is an error in V, that is not able to generate the method to transform the Struct config.config into dracks.vest.Object, the easies way to workarrount this problem is modifying the Config to add a method that implicitly ask for this transformation (this way it will force V to generate the method)
+
+Example of method
+```vlang
+import dracks.vest
+
+// ...
+
+pub fn (self Config) to_object() vest.Object {
+	return vest.Object(self)
+}
+```
