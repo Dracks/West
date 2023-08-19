@@ -10,14 +10,23 @@ mut:
 	controllers []&vweb.ControllerPath
 }
 
+pub fn (mut self WebModule) import_web_module(mut mod WebModule) {
+	self.import_module(mut mod.Module)
+	for controller in mod.controllers {
+		if !self.controllers.contains(controller) {
+			println('adding')
+			self.controllers << controller
+		}
+	}
+}
+
 struct VwebApp {
 	vweb.Context
 	vweb.Controller
 }
 
-
 pub struct App {
-	server VwebApp
+	server     VwebApp
 	app_module &WebModule
 }
 
@@ -31,7 +40,6 @@ pub fn create_server(app_module &WebModule) &App {
 	return &west_app
 }
 
-pub fn (self &App) run(port int){
+pub fn (self &App) run(port int) {
 	vweb.run(self.server, port)
 }
-
