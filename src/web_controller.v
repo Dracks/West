@@ -33,6 +33,7 @@ pub fn (mut self WebModule) register_controller[T]() {
 	new_controller := self.register[T]()
 	if false {
 		other := vest.Object(T{})
+		println(other)
 	}
 
 	path_prefix := get_path[T]() or { '/' }
