@@ -38,7 +38,10 @@ pub fn (mut self WebModule) register_controller[T]() {
 
 	path_prefix := get_path[T]() or { '/' }
 
+	println('Hello world!')
+
 	self.controllers << vweb.controller(path_prefix, new_controller)
+	println('Dalek!')
 }
 
 /*
