@@ -3,7 +3,7 @@ module west
 import vweb
 import dracks.vest
 
-[heap]
+@[heap]
 pub struct WebModule {
 	vest.Module
 mut:
