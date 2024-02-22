@@ -3,7 +3,7 @@ module west
 import dracks.vest
 import vweb
 
-[path: '/my_profile']
+@[path: '/my_profile']
 struct MyProfile {
 	vweb.Context
 }
