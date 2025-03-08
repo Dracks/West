@@ -14,5 +14,9 @@ pub fn test_module()!{
 	mut mod := WebModule{}
 	mod.register_controller[MyProfile, MyProfileContext]()!
 
+	mod.init()!
+
+	println('Finish test')
 	assert mod == mod
+	println('Finish test')
 }
