@@ -5,6 +5,6 @@ Module {
 	license: 'MIT'
 	tags: ['web']
 	dependencies: [
-		'Dracks.Vest'
+		'Dracks.vest'
 	]
 }

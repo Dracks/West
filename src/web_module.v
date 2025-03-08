@@ -1,13 +1,13 @@
 module west
 
-import vweb
+import veb
 import dracks.vest
 
 @[heap]
 pub struct WebModule {
 	vest.Module
 mut:
-	controllers []&vweb.ControllerPath
+	controllers []&veb.ControllerPath
 }
 
 pub fn (mut self WebModule) import_web_module(mut mod WebModule) {
@@ -20,26 +20,30 @@ pub fn (mut self WebModule) import_web_module(mut mod WebModule) {
 	}
 }
 
-struct VwebApp {
-	vweb.Context
-	vweb.Controller
+struct VebContext {
+	veb.Context
+}
+
+pub struct VebApp {
+	veb.Controller
 }
 
 pub struct App {
-	server     VwebApp
 	app_module &WebModule
+mut:
+	server VebApp
 }
 
 pub fn create_server(app_module &WebModule) &App {
 	mut west_app := App{
 		app_module: app_module
-		server: VwebApp{
+		server:     VebApp{
 			controllers: app_module.controllers
 		}
 	}
 	return &west_app
 }
 
-pub fn (self &App) run(port int) {
-	vweb.run(self.server, port)
+pub fn (mut self App) run(port int) {
+	veb.run[VebApp, VebContext](mut self.server, port)
 }
