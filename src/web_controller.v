@@ -1,10 +1,9 @@
 module west
 
-import vweb
-import dracks.vest
+import veb
 
 struct Controller {
-	instance &vweb.ControllerPath
+	instance &veb.ControllerPath
 	path     string
 }
 
@@ -29,15 +28,12 @@ fn get_path[T]() ?string {
 	return none
 }
 
-pub fn (mut self WebModule) register_controller[T]() {
-	new_controller := self.register[T]()
-	if false {
-		other := vest.Object(T{})
-	}
+pub fn (mut self WebModule) register_controller[T, R]()! {
+	mut new_controller := self.register[T]()
 
 	path_prefix := get_path[T]() or { '/' }
 
-	self.controllers << vweb.controller(path_prefix, new_controller)
+	self.controllers << veb.controller[T, R](path_prefix, mut new_controller)!
 }
 
 /*

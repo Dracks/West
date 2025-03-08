@@ -1,16 +1,18 @@
 module west
 
-import dracks.vest
-import vweb
+import veb
 
 @[path: '/my_profile']
 struct MyProfile {
-	vweb.Context
 }
 
-pub fn test_module() {
+struct MyProfileContext {
+	veb.Context
+}
+
+pub fn test_module()!{
 	mut mod := WebModule{}
-	mod.register_controller[MyProfile]()
+	mod.register_controller[MyProfile, MyProfileContext]()!
 
 	assert mod == mod
 }

@@ -4,7 +4,7 @@ West is a wrapper of vweb dessigned to emulate the way nestjs works. Currently o
 
 
 This is a simple example of how to use west:
-```vlang 
+```vlang
 module main
 import vweb
 
@@ -27,16 +27,14 @@ fn (mut self HomeService) count() int {
 
 // This struct will be our controller
 struct HomePage {
-	vweb.Context
-	vweb.Controller
 mut:
-	service &HomeService [inject; vweb_global]
+	service &HomeService [inject]
 }
 
 ['/']
-fn (mut self HomePage) main() vweb.Result{
+fn (mut self HomePage) main(mut ctx veb.Context) veb.Result{
 	counter := self.service.count()
-	return self.html("Hello world user ${counter}")
+	return ctx.html("Hello world user ${counter}")
 }
 
 
@@ -47,7 +45,7 @@ fn main() {
 	app_module.register[HomeService]()
 
     // Register the controller
-	app_module.register_controller[HomePage]()
+	app_module.register_controller[HomePage, veb.Context]()!
 
     // Init everything, this will inject the service, and also call the on_init functions in all the structs
 	app_module.init()!
