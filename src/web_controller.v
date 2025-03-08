@@ -28,7 +28,7 @@ fn get_path[T]() ?string {
 	return none
 }
 
-pub fn (mut self WebModule) register_controller[T, R]()! {
+pub fn (mut self WebModule) register_controller[T, R]() ! {
 	mut new_controller := self.register[T]()
 
 	path_prefix := get_path[T]() or { '/' }

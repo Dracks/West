@@ -31,13 +31,13 @@ pub struct VebApp {
 pub struct App {
 	app_module &WebModule
 mut:
-	server     VebApp
+	server VebApp
 }
 
 pub fn create_server(app_module &WebModule) &App {
 	mut west_app := App{
 		app_module: app_module
-		server: VebApp{
+		server:     VebApp{
 			controllers: app_module.controllers
 		}
 	}

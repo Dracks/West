@@ -10,7 +10,7 @@ struct MyProfileContext {
 	veb.Context
 }
 
-pub fn test_module()!{
+pub fn test_module() ! {
 	mut mod := WebModule{}
 	mod.register_controller[MyProfile, MyProfileContext]()!
 
